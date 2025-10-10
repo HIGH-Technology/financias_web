@@ -5,11 +5,10 @@ export const AXIOS_INSTANCE = Axios.create({
 });
 
 AXIOS_INSTANCE.interceptors.request.use((config) => {
-  // Exemplo: adicionar token de autenticação
-  // const token = localStorage.getItem('token');
-  // if (token) {
-  //   config.headers.Authorization = `Bearer ${token}`;
-  // }
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
 });
 
@@ -17,10 +16,7 @@ AXIOS_INSTANCE.interceptors.request.use((config) => {
 AXIOS_INSTANCE.interceptors.response.use(
   (response) => response,
   (error: AxiosError) => {
-    // Tratamento de erros global
     if (error.response?.status === 401) {
-      // Exemplo: redirecionar para login
-      // window.location.href = '/login';
     }
     return Promise.reject(error);
   }
