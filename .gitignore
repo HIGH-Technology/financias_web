@@ -41,4 +41,4 @@ yarn-error.log*
 next-env.d.ts
 
 # orval generated files (descomente se não quiser commitar os arquivos gerados)
-# /src/api/generated
+/src/api/generated
