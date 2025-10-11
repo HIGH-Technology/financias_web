@@ -6,6 +6,7 @@ export interface User {
   document: string;
   balance: number;
   role: 'Administrator' | 'User';
+  avatar?: string;
   createdAt: Date;
   updatedAt: Date;
 }

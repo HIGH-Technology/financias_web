@@ -18,19 +18,13 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { useAuth } from "@/shared/hooks/useAuth"
 
-interface NavbarProps {
-  title?: string
-}
-
-export function Navbar({ title = "Dashboard" }: NavbarProps) {
+export function Navbar() {
   const { user, logout } = useAuth()
   const router = useRouter()
 
   const handleLogout = () => {
     logout()
-    toast.success("Logout realizado com sucesso!", {
-      description: "Você foi desconectado do sistema."
-    })
+    toast.success("Logout realizado com sucesso!")
     router.push("/login")
   }
 
@@ -45,38 +39,40 @@ export function Navbar({ title = "Dashboard" }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-base-dark/95 backdrop-blur-xl border-b border-white/10">
-      <div className="flex h-14 items-center px-4">
-        <div className="flex-1">
-          <h1 className="text-lg font-semibold text-white">{title}</h1>
-        </div>
-
-        <div className="hidden md:flex md:flex-1 md:max-w-sm">
+      <div className="flex h-14 items-center px-4 justify-end">
+        <div className="hidden md:flex md:max-w-sm md:mr-4">
           <div className="relative w-full">
             <Search className="absolute left-2 top-2.5 h-4 w-4 text-white/60" />
             <Input
-              placeholder="Buscar transações, contas..."
+              placeholder="Pesquisar..."
               className="pl-8 bg-white/5 border-white/10 text-white placeholder:text-white/60 focus:border-accent-neon"
             />
           </div>
         </div>
 
-
         <div className="flex items-center space-x-2">
           <Button variant="ghost" size="icon" className="relative text-white/70 hover:text-white hover:bg-white/5">
             <Bell className="h-4 w-4" />
-            <Badge className="absolute -right-1 -top-1 h-5 w-5 rounded-full p-0 text-xs bg-black backdrop-blur-xl text-white">
+            {/*<Badge className="absolute -right-1 -top-1 h-5 w-5 rounded-full p-0 text-xs bg-black backdrop-blur-xl text-white">
               3
-            </Badge>
+            </Badge>*/}
             <span className="sr-only">Notifications</span>
           </Button>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src="/avatars/user.png" alt={user?.name || "User"} />
-                  <AvatarFallback className="bg-gradient-to-br from-primary-teal to-accent-neon/50 text-white">
-                    {user?.name ? getUserInitials(user.name) : <User className="h-4 w-4" />}
+              <Button 
+                variant="ghost" 
+                className="relative h-8 w-8 rounded-full hover:bg-white/10 transition-all duration-200 hover:scale-105 focus:ring-2 focus:ring-primary-teal/50 focus:ring-offset-2 focus:ring-offset-base-dark"
+              >
+                <Avatar className="h-8 w-8 ring-2 ring-transparent hover:ring-primary-teal/30 transition-all duration-200">
+                  <AvatarImage 
+                    src={user?.avatar || "https://www.upload.ee/image/18686481/defaultavatar.png"} 
+                    alt={user?.name || "User"}
+                    className="hover:brightness-110 transition-all duration-200"
+                  />
+                  <AvatarFallback className="bg-gradient-to-br from-primary-teal to-accent-neon/50 text-white hover:from-primary-teal/80 hover:to-accent-neon/60 transition-all duration-200">
+                    <User className="h-4 w-4" />
                   </AvatarFallback>
                 </Avatar>
               </Button>

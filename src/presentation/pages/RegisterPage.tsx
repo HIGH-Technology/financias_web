@@ -16,9 +16,7 @@ export function RegisterPage() {
     try {
       await register(data);
 
-      toast.success('Conta criada com sucesso!', {
-        description: 'Redirecionando para o dashboard...',
-      });
+      toast.success('Conta criada com sucesso!');
       
       setTimeout(() => {
         router.push('/dashboard');

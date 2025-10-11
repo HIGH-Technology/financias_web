@@ -20,23 +20,26 @@ const data = {
       url: "/dashboard",
       icon: "Home" as const,
       isActive: true,
+    },
+    {
+      title: "Finanças",
+      url: "/finances",
+      icon: "CreditCard" as const,
+      isActive: false,
       items: [
         {
-          title: "Visão Geral",
-          url: "/dashboard",
-        },
-        {
-          title: "Relatórios",
-          url: "/dashboard/reports",
+          title: "Contas",
+          url: "/finances/accounts",
         },
       ],
-    },
+    }
   ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" {...props} className="relative">
+      <div className="absolute right-0 top-14 bottom-16 w-px bg-white/10"></div>
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>

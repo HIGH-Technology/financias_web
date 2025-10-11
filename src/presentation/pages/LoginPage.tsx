@@ -19,9 +19,7 @@ export function LoginPage() {
         password: data.password,
       });
 
-      toast.success('Login realizado com sucesso!', {
-        description: 'Redirecionando para o dashboard...',
-      });
+      toast.success('Login realizado com sucesso!');
 
       setTimeout(() => {
         router.push('/dashboard');

@@ -56,18 +56,31 @@ export function NavMain({
   return (
     <SidebarGroup>
       <SidebarGroupLabel>
-        <div className="mr-4 flex items-center space-x-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary-teal to-accent-neon/50">
-            <span className="text-sm font-bold text-white">F</span>
-          </div>
-          <span className="hidden font-bold text-white sm:inline-block">
-            Sistema Financeiro
-          </span>
+        <div className="flex justify-center items-center py-4">
+          <img 
+            src="https://via.placeholder.com/120x40/0d9488/ffffff?text=LOGO" 
+            alt="Logo" 
+            className="w-24 h-8 object-contain"
+          />
         </div>
       </SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
           const Icon = item.icon ? iconMap[item.icon] : null
+          
+          if (!item.items || item.items.length === 0) {
+            return (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild tooltip={item.title}>
+                  <a href={item.url}>
+                    {Icon && <Icon />}
+                    <span>{item.title}</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            )
+          }
+          
           return (
             <Collapsible
               key={item.title}

@@ -13,9 +13,9 @@ export default function DashboardLayout({
     <ProtectedRoute>
       <SidebarProvider>
         <AppSidebar />
-        <SidebarInset>
-          <Navbar title="Dashboard" />
-          <main className="flex-1 min-h-screen bg-base-dark">
+        <SidebarInset className="flex flex-col h-screen overflow-hidden">
+          <Navbar />
+          <main className="flex-1 bg-base-dark overflow-y-auto">
             <div className="p-6">
               {children}
             </div>
